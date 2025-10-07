@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict Fire Risk</title>
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: #f4f6f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            width: 450px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #3b82f6;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        label {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        input, select {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background: #3b82f6;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+        .result {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 1.2rem;
+            color: #16a34a;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Predict Fire Risk</h2>
+        <form action="/predictdata" method="post">
+            <label>Temperature</label>
+            <input type="number" step="any" name="Temperature" required>
+
+            <label>Relative Humidity (RH)</label>
+            <input type="number" step="any" name="RH" required>
+
+            <label>Wind Speed (Ws)</label>
+            <input type="number" step="any" name="Ws" required>
+
+            <label>Rain</label>
+            <input type="number" step="any" name="Rain" required>
+
+            <label>FFMC</label>
+            <input type="number" step="any" name="FFMC" required>
+
+            <label>DMC</label>
+            <input type="number" step="any" name="DMC" required>
+
+            <label>ISI</label>
+            <input type="number" step="any" name="ISI" required>
+
+            <label>Classes</label>
+            <input type="number" step="any" name="Classes" required>
+
+            <label>Region</label>
+            <input type="number" step="any" name="Region" required>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if result %}
+        <div class="result">
+            Predicted Fire Class: {{ result }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
